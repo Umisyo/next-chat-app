@@ -35,9 +35,9 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn lint",
-      "yarn format",
-      "yarn lint:fix"
+      "pnpm lint",
+      "pnpm format",
+      "pnpm lint:fix"
     ]
   }
 }
