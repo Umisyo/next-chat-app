@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useSignUp } from '~/component/feature/SignUp/signUp.hooks'
+import { useSignUp } from '~/component/feature/Auth/Auth.hooks'
 
 export default function SignUp() {
   const [formState, setFormState] = useState({
@@ -13,6 +13,7 @@ export default function SignUp() {
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     useSignUp(formState)
     setFormState({
       email: '',
@@ -30,6 +31,6 @@ export default function SignUp() {
           <button className='block bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 mt-10' type="submit">アカウントを作成</button>
         </form>
       </div>
-    </div >
+    </div>
   )
 }
