@@ -1,5 +1,6 @@
 import { FirebaseError } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { toast } from 'react-toastify';
 
 export interface FormState {
   email: string;
@@ -14,9 +15,10 @@ export const useSignUp = async (formState: FormState) => {
       formState.email,
       formState.password
     )
+    toast.success('Successfully signed up!')
   } catch (e) {
     if (e instanceof FirebaseError) {
-      console.log(e)
+      toast.error(e.message)
     }
   }
 }
