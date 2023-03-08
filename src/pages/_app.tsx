@@ -4,6 +4,7 @@ import { initializeFirebaseApp } from '~/lib/firebase'
 import { Noto_Sans_JP } from 'next/font/google'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from '~/component/feature/Auth/AuthProvider';
 
 const notoSansJP = Noto_Sans_JP({
   weight: ['300', '400', '500'],
@@ -15,19 +16,21 @@ const notoSansJP = Noto_Sans_JP({
 initializeFirebaseApp()
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${notoSansJP.variable} font-sans`}>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <Component {...pageProps} />
-    </main >
+    <AuthProvider>
+      <main className={`${notoSansJP.variable} font-sans`}>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Component {...pageProps} />
+      </main >
+    </AuthProvider>
   )
 }
