@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 interface ButtonProps {
   children?: ReactNode
   type?: 'submit' | 'button' | 'reset' | undefined
-  isBlock: boolean
+  isBlock?: boolean
   color?: string
   hoverColor?: string
   textColor?: string
@@ -22,9 +22,8 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`${isBlock ? 'block' : ''} ${color ? color : 'bg-gray-700'} ${
-        hoverColor ? hoverColor : 'hover:bg-gray-600'
-      } ${textColor ? textColor : 'text-white'} ${someStyles}`}
+      className={`${isBlock ? 'block' : ''} ${color ? color : 'bg-gray-700'} ${hoverColor ? hoverColor : 'hover:bg-gray-600'
+        } ${textColor ? textColor : 'text-white'} ${someStyles}`}
     >
       {children}
     </button>
