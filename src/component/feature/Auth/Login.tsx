@@ -8,13 +8,11 @@ export default function Login() {
     password: '',
   })
 
+  const login = useLogin
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    useLogin(formState)
-    setFormState({
-      email: '',
-      password: '',
-    })
+    login(formState)
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

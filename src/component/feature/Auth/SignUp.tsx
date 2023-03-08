@@ -8,6 +8,8 @@ export default function SignUp() {
     password: '',
   })
 
+  const signup = useSignUp
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormState({ ...formState, [name]: value })
@@ -15,7 +17,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    useSignUp(formState)
+    signup(formState)
     setFormState({
       email: '',
       password: '',
