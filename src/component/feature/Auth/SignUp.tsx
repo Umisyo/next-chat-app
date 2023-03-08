@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useSignUp } from '~/component/feature/SignUp/signUp.hooks'
+import { useSignUp } from '~/component/feature/Auth/signUp.hooks'
 
 export default function SignUp() {
   const [formState, setFormState] = useState({
