@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useLogin } from '~/component/feature/Auth/Auth.hooks'
+import { useLogin } from '~/component/feature/Auth/hooks/useLogin.hooks'
 import Button from '~/component/ui/Button'
 
 export default function Login() {

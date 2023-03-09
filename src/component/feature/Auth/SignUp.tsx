@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useSignUp } from '~/component/feature/Auth/Auth.hooks'
+import { useSignUp } from '~/component/feature/Auth/hooks/useSignUp.hooks'
 import Button from '~/component/ui/Button'
 
 export default function SignUp() {

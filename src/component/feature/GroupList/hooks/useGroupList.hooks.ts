@@ -1,61 +1,10 @@
 import { FirebaseError } from 'firebase/app'
-import { User } from 'firebase/auth'
-import { getDatabase, ref, update, get, set, onChildAdded, onChildRemoved } from 'firebase/database'
+import { getDatabase, ref, onChildAdded, onChildRemoved } from 'firebase/database'
 import { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
-
-export interface GroupObject {
-  groupName: string,
-  latestEntry?: string,
-  updatedAt: string
-}
-
-
-const db = getDatabase()
-const dbRef = ref(db, 'groups')
-const updatedAt = new Date()
-
-const isGroupsExit = async (): Promise<boolean> => {
-  const checkRef = ref(db)
-  return await get(checkRef).then((snapshot) => {
-    return snapshot.hasChild('groups')
-  })
-}
-
-const isKeyExit = async (key: string): Promise<boolean> => {
-  return await get(dbRef).then((snapshot) => {
-    return snapshot.hasChild(key)
-  })
-}
+import { GroupObject } from '~/component/feature/GroupList/types/GroupObject'
 
 const isGroupObject = (value: { groupName: any; updatedAt: any; }): value is GroupObject => {
   return value && value.groupName && value.updatedAt;
-}
-
-export const useAddGroup = async (newGroup: string, user: User | undefined | null) => {
-  const newGroupObject = {
-    [newGroup]: {
-      createUserId: user?.uid,
-      messages: [''],
-      updatedAt
-    }
-  }
-  try {
-    if (!(await isGroupsExit())) {
-      await set(dbRef, newGroupObject)
-      return
-    }
-    if (await isKeyExit(newGroup)) {
-      toast.error('同名のグループが既に存在します')
-      throw Error;
-    }
-    await update(dbRef, newGroupObject)
-    toast.success('Group Created')
-  } catch (e) {
-    if (e instanceof FirebaseError) {
-      toast.error(e.message)
-    }
-  }
 }
 
 export const useGroupList = () => {

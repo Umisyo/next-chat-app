@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { GroupObject } from '~/component/feature/GroupList/GroupList.hooks';
+import { GroupObject } from '~/component/feature/GroupList/types/GroupObject';
 
 export default function GroupLink({ groupName, latestEntry }: GroupObject) {
   return (

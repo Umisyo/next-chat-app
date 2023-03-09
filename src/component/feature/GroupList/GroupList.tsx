@@ -1,8 +1,9 @@
 import { FormEvent, useEffect, useState } from 'react';
 import Button from '~/component/ui/Button';
 import { useAuthContext } from '~/component/feature/Auth/AuthProvider';
-import { useAddGroup, useGroupList } from '~/component/feature/GroupList/GroupList.hooks';
 import GroupLink from '~/component/feature/GroupList/GroupLink';
+import { useAddGroup } from '~/component/feature/GroupList/hooks/useAddGroup.hooks';
+import { useGroupList } from '~/component/feature/GroupList/hooks/useGroupList.hooks';
 
 export default function GroupList() {
   const [newGroup, setNewGroup] = useState('');
