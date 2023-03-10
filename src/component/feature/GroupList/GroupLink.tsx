@@ -1,10 +1,15 @@
-import { GroupObject } from '~/component/feature/GroupList/GroupList';
+import Link from 'next/link'
+import { GroupObject } from '~/component/feature/GroupList/types/GroupObject'
 
 export default function GroupLink({ groupName, latestEntry }: GroupObject) {
   return (
-    <li className='border w-full py-2 pl-2'>
-      <p className='font-bold'>{groupName}</p>
-      <span className='font-thin text-xs text-gray-500'>{latestEntry || 'メッセージはありません'}</span>
-    </li>
+    <Link href={`/chat/${groupName}`}>
+      <li className="border w-full py-2 pl-2">
+        <p className="font-bold">{groupName}</p>
+        <span className="font-thin text-xs text-gray-500">
+          {latestEntry?.message || 'メッセージはありません'}
+        </span>
+      </li>
+    </Link>
   )
 }

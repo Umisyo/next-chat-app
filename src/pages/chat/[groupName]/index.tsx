@@ -1,10 +1,10 @@
 import { AuthGuard } from '~/component/feature/Auth/AuthGuard'
-import GroupList from '~/component/feature/GroupList'
+import Chat from '~/component/feature/Chat'
 
-export default function Home() {
+export default function Page() {
   return (
     <AuthGuard>
-      <GroupList />
+      <Chat />
     </AuthGuard>
   )
 }
