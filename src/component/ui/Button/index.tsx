@@ -22,8 +22,9 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`${isBlock ? 'block' : ''} ${color ? color : 'bg-gray-700'} ${hoverColor ? hoverColor : 'hover:bg-gray-600'
-        } ${textColor ? textColor : 'text-white'} ${someStyles}`}
+      className={`${isBlock ? 'block' : ''} ${color ? color : 'bg-gray-700'} ${
+        hoverColor ? hoverColor : 'hover:bg-gray-600'
+      } ${textColor ? textColor : 'text-white'} ${someStyles}`}
     >
       {children}
     </button>

@@ -20,12 +20,15 @@ const isKeyExit = async (key: string): Promise<boolean> => {
   })
 }
 
-export const useAddGroup = async (newGroup: string, user: User | undefined | null) => {
+export const useAddGroup = async (
+  newGroup: string,
+  user: User | undefined | null,
+) => {
   const newGroupObject = {
     [newGroup]: {
       createUserId: user?.uid,
-      updatedAt
-    }
+      updatedAt,
+    },
   }
   try {
     if (!(await isGroupsExit())) {
@@ -34,7 +37,7 @@ export const useAddGroup = async (newGroup: string, user: User | undefined | nul
     }
     if (await isKeyExit(newGroup)) {
       toast.error('同名のグループが既に存在します')
-      throw Error;
+      throw Error
     }
     await update(dbRef, newGroupObject)
     toast.success('Group Created')

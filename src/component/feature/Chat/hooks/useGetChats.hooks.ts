@@ -1,8 +1,8 @@
-import { FirebaseError } from 'firebase/app';
-import { getDatabase, onChildAdded, ref } from 'firebase/database';
-import { NextRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { MessageObject } from '~/component/feature/Chat/types/MessageObject';
+import { FirebaseError } from 'firebase/app'
+import { getDatabase, onChildAdded, ref } from 'firebase/database'
+import { NextRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { MessageObject } from '~/component/feature/Chat/types/MessageObject'
 
 export const useGetChats = (router: NextRouter) => {
   const [chatList, setChatList] = useState<MessageObject[]>([])
@@ -14,7 +14,7 @@ export const useGetChats = (router: NextRouter) => {
           setChatList([])
         }
         const db = getDatabase()
-        const messagesRef = ref(db, "groups/" + groupName + "/messages");
+        const messagesRef = ref(db, 'groups/' + groupName + '/messages')
         return onChildAdded(messagesRef, (snapshot) => {
           const value = snapshot.val()
           setChatList((prev) => [...prev, value])
