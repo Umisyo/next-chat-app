@@ -11,13 +11,25 @@ export default function Header() {
   }
   const user = useAuthContext().user
   return (
-    <header className='w-full h-14 bg-cyan-700 p-3'>
-      <nav className='flex w-full justify-between items-center'>
-        <h1 className='text-white'>NextChat</h1>
-        {user ?
-          <button className='w-28 text-white border border-white border-dotted p-1 hover:opacity-75' onClick={handleLogout} type='button'>ログアウト</button> :
-          <button className='w-28 text-white border border-white border-dotted p-1 hover:opacity-75' onClick={e => router.push('/signup')}>サインアップ</button>
-        }
+    <header className="w-full h-14 bg-cyan-700 p-3">
+      <nav className="flex w-full justify-between items-center">
+        <h1 className="text-white">NextChat</h1>
+        {user ? (
+          <button
+            className="w-28 text-white border border-white border-dotted p-1 hover:opacity-75"
+            onClick={handleLogout}
+            type="button"
+          >
+            ログアウト
+          </button>
+        ) : (
+          <button
+            className="w-28 text-white border border-white border-dotted p-1 hover:opacity-75"
+            onClick={(e) => router.push('/signup')}
+          >
+            サインアップ
+          </button>
+        )}
       </nav>
     </header>
   )
