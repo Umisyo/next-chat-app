@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { useSignUp } from '~/component/feature/Auth/hooks/useSignUp.hooks'
 import { useUploadImg } from '~/component/feature/Auth/hooks/useUploadImg.hooks'
 import { FormState } from '~/component/feature/Auth/types/FormState'
+import Image from 'next/image'
 import Button from '~/component/ui/Button'
 
 export default function SignUp() {
@@ -49,7 +50,7 @@ export default function SignUp() {
       <div className=' w-[960px]'>
         <h2 className="text-2xl font-bold">サインアップ</h2>
         <form className="mt-6" onSubmit={handleSubmit}>
-          <img className="flex justify-center m-auto items-center w-[512px] h-auto" src={createObjectURL} />
+          {createObjectURL && <Image className="flex justify-center m-auto items-center w-[512px] h-auto" src={createObjectURL} alt={'プロフィール画像'} />}
           <label className="bg-primary-900 text-white-900 flex justify-center items-center px-4 py-2 rounded mb-6 w-full" >
             <input className="hidden" type="file" accept="image/*" name="profileImage" required onChange={uploadToClient} />
             <svg
