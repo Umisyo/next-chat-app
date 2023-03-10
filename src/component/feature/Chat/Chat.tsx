@@ -7,7 +7,6 @@ export default function Chat() {
   const router = useRouter();
   const groupName = router.query.groupName;
   const isRedirect = useIsRedirect
-  const chats = useGetChats(groupName);
 
   useEffect(() => {
     if (router.isReady) {
@@ -24,7 +23,7 @@ export default function Chat() {
   return (
     <>
       <p>{groupName}</p>
-      {chats.map((chat, index) => {
+      {useGetChats(router).map((chat, index) => {
         if (chat) {
           return <p key={index}>{chat}</p>
         }

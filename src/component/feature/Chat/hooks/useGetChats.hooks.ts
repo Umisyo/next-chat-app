@@ -1,23 +1,30 @@
 import { FirebaseError } from 'firebase/app';
 import { getDatabase, onChildAdded, ref } from 'firebase/database';
+import { NextRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-export const useGetChats = (groupName: string | string[] | undefined) => {
+export const useGetChats = (router: NextRouter) => {
   const [chatList, setChatList] = useState<string[]>([])
+  const groupName = router.query.groupName
   useEffect(() => {
-    try {
-      const db = getDatabase()
-      const messagesRef = ref(db, "groups/" + groupName + "/messages");
-      return onChildAdded(messagesRef, (snapshot) => {
-        const value = snapshot.val()
-        setChatList((prev) => [...prev, value])
-      })
-    } catch (e) {
-      if (e instanceof FirebaseError) {
-        console.error(e)
+    if (router.isReady) {
+      try {
+        if (!groupName) {
+          setChatList([])
+        }
+        const db = getDatabase()
+        const messagesRef = ref(db, "groups/" + groupName + "/messages");
+        return onChildAdded(messagesRef, (snapshot) => {
+          const value = snapshot.val()
+          setChatList((prev) => [...prev, value])
+        })
+      } catch (e) {
+        if (e instanceof FirebaseError) {
+          console.error(e)
+        }
+        return
       }
-      return
     }
-  }, [groupName])
+  }, [router])
   return chatList
 }

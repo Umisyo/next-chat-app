@@ -1,5 +1,5 @@
 import { FirebaseError } from 'firebase/app'
-import { getDatabase, ref, onChildAdded, onChildRemoved } from 'firebase/database'
+import { getDatabase, ref, onChildAdded } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import { GroupObject } from '~/component/feature/GroupList/types/GroupObject'
 
@@ -14,32 +14,20 @@ export const useGroupList = () => {
     try {
       const db = getDatabase()
       const dbRef = ref(db, 'groups')
-      return () => {
-        onChildAdded(dbRef, (snapshot) => {
-          if (snapshot.exists()) {
-            const group = {
-              groupName: snapshot.key,
-              latestEntry: snapshot.val().GroupLastMessage,
-              updatedAt: new Date(snapshot.val().createdAt),
-            }
-            if (isGroupObject(group)) {
-              setGroupList(prev => [...prev, group])
-            }
+      return onChildAdded(dbRef, (snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val().messages)
+          const group = {
+            groupName: snapshot.key,
+            latestEntry: snapshot.val().messages.slice(-1)[0],
+            updatedAt: new Date(snapshot.val().createdAt),
           }
-        })
-        onChildRemoved(dbRef, (snapshot) => {
-          if (snapshot.exists()) {
-            const group = {
-              groupName: snapshot.key,
-              latestEntry: snapshot.val().GroupLastMessage,
-              updatedAt: new Date(snapshot.val().createdAt),
-            }
-            if (isGroupObject(group)) {
-              setGroupList(prev => prev.filter(g => g.groupName !== group.groupName))
-            }
+          if (isGroupObject(group)) {
+            setGroupList(prev => [...prev, group])
           }
-        })
-      }
+        }
+      })
+
     } catch (e) {
       if (e instanceof FirebaseError) {
         console.error(e)
