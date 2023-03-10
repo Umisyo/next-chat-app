@@ -5,6 +5,7 @@ import { Noto_Sans_JP } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider } from '~/component/feature/Auth/AuthProvider'
+import Header from '~/component/ui/Header'
 
 const notoSansJP = Noto_Sans_JP({
   weight: ['300', '400', '500'],
@@ -16,6 +17,7 @@ initializeFirebaseApp()
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
+      <Header />
       <main className={`${notoSansJP.variable} font-sans`}>
         <ToastContainer
           position="top-right"

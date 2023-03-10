@@ -1,21 +1,29 @@
 import { FirebaseError } from 'firebase/app'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth'
 import { toast } from 'react-toastify'
 import { FormState } from '~/component/feature/Auth/types/FormState'
 
 const auth = getAuth()
 
-export const useSignUp = async (formState: FormState) => {
+export const useSignUp = async (formState: FormState, imageUrl: string) => {
   try {
     await createUserWithEmailAndPassword(
       auth,
       formState.email,
       formState.password,
+    ).then((user) =>
+      updateProfile(user.user, {
+        displayName: formState.userName,
+        photoURL: imageUrl,
+      }),
     )
-    toast.success('Successfully signed up!')
   } catch (e) {
     if (e instanceof FirebaseError) {
-      toast.error(e.message)
+      toast.error('アカウント作成に失敗しました')
     }
   }
 }
