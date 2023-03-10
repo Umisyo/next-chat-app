@@ -6,6 +6,7 @@ import Button from '~/component/ui/Button'
 
 export default function SignUp() {
   const [formState, setFormState] = useState<FormState>({
+    userName: '',
     email: '',
     password: ''
   })
@@ -31,11 +32,13 @@ export default function SignUp() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    signup(formState)
     await uploadImg(image).then(res => {
-      console.log(res)
+      if (res) {
+        signup(formState, res)
+      }
     })
     setFormState({
+      userName: '',
       email: '',
       password: ''
     })
@@ -62,7 +65,16 @@ export default function SignUp() {
             </svg>
           </label>
           <input
-            className="w-full h-8 block"
+            className="w-full h-8 block border"
+            type="text"
+            name="userName"
+            value={formState.userName}
+            onChange={handleChange}
+            required
+            placeholder="ユーザー名"
+          />
+          <input
+            className="w-full h-8 block border mt-2"
             type="email"
             name="email"
             value={formState.email}
@@ -71,7 +83,7 @@ export default function SignUp() {
             placeholder="メールアドレス"
           />
           <input
-            className="w-full h-8 block mt-2"
+            className="w-full h-8 block border mt-2"
             type="password"
             name="password"
             value={formState.password}
