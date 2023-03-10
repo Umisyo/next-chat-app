@@ -1,5 +1,8 @@
 export interface GroupObject {
   groupName: string,
-  latestEntry?: string,
+  latestEntry?: {
+    sendUser: string,
+    message: string
+  },
   updatedAt: string
 }

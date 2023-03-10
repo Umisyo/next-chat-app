@@ -1,5 +1,5 @@
 import { AuthGuard } from '~/component/feature/Auth/AuthGuard';
-import GroupList from '~/component/feature/GroupList/GroupList';
+import GroupList from '~/component/feature/GroupList';
 
 export default function Home() {
   return (
