@@ -24,7 +24,6 @@ export const useAddGroup = async (newGroup: string, user: User | undefined | nul
   const newGroupObject = {
     [newGroup]: {
       createUserId: user?.uid,
-      messages: [''],
       updatedAt
     }
   }
