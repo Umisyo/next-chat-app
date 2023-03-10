@@ -2,10 +2,12 @@ import { useRouter } from 'next/router'
 import { useAuthContext } from '~/component/feature/Auth/AuthProvider'
 import { useLogout } from '~/hooks/useLogout.hooks'
 
+const logout = useLogout
+
 export default function Header() {
   const router = useRouter()
   const handleLogout = async () => {
-    await useLogout()
+    await logout()
   }
   const user = useAuthContext().user
   return (
