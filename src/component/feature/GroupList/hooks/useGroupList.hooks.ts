@@ -16,10 +16,9 @@ export const useGroupList = () => {
       const dbRef = ref(db, 'groups')
       return onChildAdded(dbRef, (snapshot) => {
         if (snapshot.exists()) {
-          console.log(snapshot.val().messages)
           const group = {
             groupName: snapshot.key,
-            latestEntry: snapshot.val().messages.slice(-1)[0],
+            latestEntry: snapshot.val().messages?.slice(-1)[0],
             updatedAt: new Date(snapshot.val().createdAt),
           }
           if (isGroupObject(group)) {
