@@ -4,8 +4,7 @@ import { useAuthContext } from '~/component/feature/Auth/AuthProvider'
 import { useGetChats } from '~/component/feature/Chat/hooks/useGetChats.hooks'
 import { useIsRedirect } from '~/component/feature/Chat/hooks/useIsGroupExit.hooks'
 import { usePostMessage } from '~/component/feature/Chat/hooks/usePostMessage.hooks'
-import MessageItem from '~/component/feature/Chat/messageItem'
-import Button from '~/component/ui/Button'
+import MessageItem from '~/component/feature/Chat/MessageItem'
 
 export default function Chat() {
   const router = useRouter()
@@ -24,7 +23,7 @@ export default function Chat() {
 
   useEffect(() => {
     if (router.isReady) {
-      ;(async () => {
+      ; (async () => {
         if (typeof groupName !== 'string' || (await isRedirect(groupName))) {
           router.replace('/404')
           return
