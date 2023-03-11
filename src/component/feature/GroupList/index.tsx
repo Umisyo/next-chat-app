@@ -35,6 +35,7 @@ export default function GroupList() {
         <input
           type="text"
           placeholder="グループ名"
+          maxLength={15}
           value={newGroup}
           onChange={(e) => setNewGroup(e.target.value)}
         />

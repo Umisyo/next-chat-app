@@ -1,3 +1,4 @@
+import { group } from 'console'
 import { FirebaseError } from 'firebase/app'
 import { User } from 'firebase/auth'
 import { getDatabase, ref, get, set, update } from 'firebase/database'
@@ -31,18 +32,20 @@ export const useAddGroup = async (
     },
   }
   try {
+    if (newGroup.trim().length === 0) {
+      throw new Error('グループ名を入力してください')
+    }
     if (!(await isGroupsExit())) {
       await set(dbRef, newGroupObject)
       return
     }
     if (await isKeyExit(newGroup)) {
-      toast.error('同名のグループが既に存在します')
-      throw Error
+      throw new Error('同名のグループが既に存在します')
     }
     await update(dbRef, newGroupObject)
     toast.success('Group Created')
   } catch (e) {
-    if (e instanceof FirebaseError) {
+    if (e instanceof Error || e instanceof FirebaseError) {
       toast.error(e.message)
     }
   }
