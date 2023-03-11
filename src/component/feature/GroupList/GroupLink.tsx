@@ -3,13 +3,13 @@ import { GroupObject } from '~/component/feature/GroupList/types/GroupObject'
 
 export default function GroupLink({ groupName, latestEntry }: GroupObject) {
   return (
-    <Link href={`/chat/${groupName}`}>
-      <li className="border w-full py-2 pl-2">
+    <li className="border w-full">
+      <Link className='block py-2 pl-2' href={`/chat/${groupName}`}>
         <p className="font-bold">{groupName}</p>
         <span className="font-thin text-xs text-gray-500">
           {latestEntry?.message || 'メッセージはありません'}
         </span>
-      </li>
-    </Link>
+      </Link>
+    </li>
   )
 }
