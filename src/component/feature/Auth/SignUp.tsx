@@ -1,9 +1,11 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useSignUp } from '~/component/feature/Auth/hooks/useSignUp.hooks'
 import { useUploadImg } from '~/component/feature/Auth/hooks/useUploadImg.hooks'
 import { FormState } from '~/component/feature/Auth/types/FormState'
 import Image from 'next/image'
 import Button from '~/component/ui/Button'
+import { useAuthContext } from '~/component/feature/Auth/AuthProvider'
+import { useRouter } from 'next/router'
 
 export default function SignUp() {
   const [formState, setFormState] = useState<FormState>({
@@ -15,6 +17,8 @@ export default function SignUp() {
   const [createObjectURL, setCreateObjectURL] = useState<string>()
   const signup = useSignUp
   const uploadImg = useUploadImg
+  const router = useRouter()
+  const user = useAuthContext().user
 
   const uploadToClient = (e: FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement
@@ -44,6 +48,12 @@ export default function SignUp() {
       password: '',
     })
   }
+
+  useEffect(() => {
+    if (user) {
+      router.replace('/')
+    }
+  }, [user])
 
   return (
     <div className="flex justify-center h-screen mx-auto pt-2.5">
