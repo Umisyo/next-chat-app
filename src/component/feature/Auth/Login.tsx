@@ -1,4 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { useRouter } from 'next/router'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { useAuthContext } from '~/component/feature/Auth/AuthProvider'
 import { useLogin } from '~/component/feature/Auth/hooks/useLogin.hooks'
 import Button from '~/component/ui/Button'
 
@@ -9,6 +11,8 @@ export default function Login() {
   })
 
   const login = useLogin
+  const user = useAuthContext().user
+  const router = useRouter()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -19,6 +23,12 @@ export default function Login() {
     const { name, value } = e.target
     setFormState({ ...formState, [name]: value })
   }
+
+  useEffect(() => {
+    if (user) {
+      router.replace('/')
+    }
+  }, [user])
 
   return (
     <div className="flex justify-center h-screen mx-auto pt-2.5">
