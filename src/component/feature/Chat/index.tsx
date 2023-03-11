@@ -35,24 +35,21 @@ export default function Chat() {
 
   return (
     <div className='h-screen'>
-      <div className='pb-8'>
+      <div className='pb-12'>
         {useGetChats(router).map((chat, index) => {
-          if (chat) {
-            return (
-              <MessageItem key={index} message={chat} />
-            )
-          }
+          return (
+            <MessageItem key={index} message={chat} />
+          )
         })}
       </div>
-      <form className="flex w-full fixed bottom-0 left-0 right-0 bg-cyan-400" onSubmit={handleSubmit}>
+      <form className="flex w-full fixed bottom-0 left-0 right-0" onSubmit={handleSubmit}>
         <input
           type="text"
-          className="w-full h-8"
+          className="w-full h-12 border bg-slate-100 px-1"
           placeholder="なにか投稿してみましょう"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button type="submit">Send</Button>
       </form>
     </div>
   )
