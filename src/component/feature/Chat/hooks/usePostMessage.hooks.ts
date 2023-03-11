@@ -20,7 +20,7 @@ export const usePostMessage = async (
     const newMessage: MessageObject = {
       message: message,
       sendUserName: user.displayName ? user.displayName : '',
-      sendUserAvatar: user.photoURL ? user.photoURL : ''
+      sendUserAvatar: user.photoURL ? user.photoURL : '',
     }
     await push(messageRef, newMessage)
   } catch (e) {

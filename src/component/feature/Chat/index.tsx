@@ -24,7 +24,7 @@ export default function Chat() {
 
   useEffect(() => {
     if (router.isReady) {
-      ; (async () => {
+      ;(async () => {
         if (typeof groupName !== 'string' || (await isRedirect(groupName))) {
           router.replace('/404')
           return
@@ -34,15 +34,16 @@ export default function Chat() {
   }, [router])
 
   return (
-    <div className='h-screen'>
-      <div className='pb-12'>
+    <div className="h-screen">
+      <div className="pb-12">
         {useGetChats(router).map((chat, index) => {
-          return (
-            <MessageItem key={index} message={chat} />
-          )
+          return <MessageItem key={index} message={chat} />
         })}
       </div>
-      <form className="flex w-full fixed bottom-0 left-0 right-0" onSubmit={handleSubmit}>
+      <form
+        className="flex w-full fixed bottom-0 left-0 right-0"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           className="w-full h-12 border bg-slate-100 px-1"
