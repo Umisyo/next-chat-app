@@ -1,5 +1,6 @@
 import { FirebaseError } from 'firebase/app'
-import { getDatabase, ref, push, set, update } from 'firebase/database'
+import { User } from 'firebase/auth'
+import { getDatabase, ref, push } from 'firebase/database'
 import { NextRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import { MessageObject } from '~/component/feature/Chat/types/MessageObject'
@@ -7,7 +8,7 @@ import { MessageObject } from '~/component/feature/Chat/types/MessageObject'
 export const usePostMessage = async (
   router: NextRouter,
   message: string,
-  user: string,
+  user: User,
 ) => {
   const groupName = router.query.groupName
   if (!groupName) {
@@ -18,7 +19,8 @@ export const usePostMessage = async (
     const messageRef = ref(db, 'groups/' + groupName + '/messages')
     const newMessage: MessageObject = {
       message: message,
-      sendUser: user,
+      sendUserName: user.displayName ? user.displayName : '',
+      sendUserAvatar: user.photoURL ? user.photoURL : ''
     }
     await push(messageRef, newMessage)
   } catch (e) {

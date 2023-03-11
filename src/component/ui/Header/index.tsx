@@ -11,7 +11,7 @@ export default function Header() {
   }
   const user = useAuthContext().user
   return (
-    <header className="w-full h-14 bg-cyan-700 p-3">
+    <header className="w-full h-14 bg-cyan-700 p-3 sticky top-0 z-50">
       <nav className="flex w-full justify-between items-center">
         <h1 className="text-white">NextChat</h1>
         {user ? (

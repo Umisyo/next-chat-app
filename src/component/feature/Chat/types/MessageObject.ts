@@ -1,4 +1,5 @@
 export interface MessageObject {
-  sendUser: string
   message: string
+  sendUserName: string,
+  sendUserAvatar: string
 }
