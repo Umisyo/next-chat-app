@@ -48,7 +48,7 @@ export default function Chat() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type='submit' className="w-14">
+        <button type="submit" className="w-14">
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </form>

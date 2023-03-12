@@ -43,12 +43,12 @@ export default function GroupList() {
           <input
             type="text"
             className="w-full h-12 px-1 bg-slate-100"
-            name='新しいグループ'
+            name="新しいグループ"
             placeholder="グループを作成"
             value={newGroup}
             onChange={(e) => setNewGroup(e.target.value)}
           />
-          <button type='submit' className="w-14">
+          <button type="submit" className="w-14">
             <FontAwesomeIcon icon={faPlusSquare} />
           </button>
         </form>
