@@ -7,7 +7,7 @@ export default function GroupLink({
   updatedAt,
 }: GroupObject) {
   return (
-    <li className="border w-full">
+    <li className="border w-full hover:opacity-50">
       <Link className="block py-2 px-2" href={`/chat/${groupName}`}>
         <p className="font-bold">{groupName}</p>
         <div className="flex mt-2">
@@ -15,9 +15,8 @@ export default function GroupLink({
             {latestEntry?.message || 'メッセージはありません'}
           </span>
           <span className="ml-auto font-thin text-xs text-gray-500">
-            {`${updatedAt.getFullYear()}/${
-              updatedAt.getMonth() + 1
-            }/${updatedAt.getDate()}/${updatedAt.getHours()}:${updatedAt.getMinutes()}`}
+            {`${updatedAt.getFullYear()}/${updatedAt.getMonth() + 1
+              }/${updatedAt.getDate()}/${updatedAt.getHours()}:${updatedAt.getMinutes()}`}
           </span>
         </div>
       </Link>
