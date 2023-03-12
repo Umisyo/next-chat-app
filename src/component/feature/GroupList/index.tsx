@@ -32,7 +32,10 @@ export default function GroupList() {
           />
         ))}
       </ul>
-      <form className='w-full flex fixed bottom-0 left-0 right-0' onSubmit={handleSubmit}>
+      <form
+        className="w-full flex fixed bottom-0 left-0 right-0"
+        onSubmit={handleSubmit}
+      >
         <form
           className="flex w-full fixed bottom-0 left-0 right-0 bg-slate-100 border"
           onSubmit={handleSubmit}
@@ -44,7 +47,7 @@ export default function GroupList() {
             value={newGroup}
             onChange={(e) => setNewGroup(e.target.value)}
           />
-          <button className='w-14'>
+          <button className="w-14">
             <FontAwesomeIcon icon={faPlusSquare} />
           </button>
         </form>

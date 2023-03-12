@@ -13,7 +13,7 @@ export default function Chat() {
   const postMessage = usePostMessage
   const user = useAuthContext().user
   const [message, setMessage] = useState<string>('')
-  const scrollBottomRef = useRef<HTMLDivElement>(null);
+  const scrollBottomRef = useRef<HTMLDivElement>(null)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -48,7 +48,7 @@ export default function Chat() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button className='w-14'>
+        <button className="w-14">
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </form>
