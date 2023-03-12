@@ -22,12 +22,12 @@ export default function GroupList() {
   return (
     <div>
       <ul>
-        {groupList.map((group, index) => (
+        {groupList.map((group) => (
           <GroupLink
             groupName={group.groupName}
             latestEntry={group.latestEntry}
             updatedAt={group.updatedAt}
-            key={index}
+            key={group.updatedAt.getTime()}
           />
         ))}
       </ul>

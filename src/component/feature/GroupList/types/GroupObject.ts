@@ -4,5 +4,5 @@ export interface GroupObject {
     sendUser: string
     message: string
   }
-  updatedAt: string
+  updatedAt: Date
 }

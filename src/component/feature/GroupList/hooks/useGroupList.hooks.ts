@@ -10,6 +10,10 @@ const isGroupObject = (value: {
   return value && value.groupName && value.updatedAt
 }
 
+function sortByDate(array: GroupObject[]) {
+  return array.sort((a: GroupObject, b: GroupObject) => b.updatedAt.getTime() - a.updatedAt.getTime())
+}
+
 export const useGroupList = () => {
   const [groupList, setGroupList] = useState<GroupObject[]>([])
 
@@ -27,10 +31,10 @@ export const useGroupList = () => {
             latestEntry: latestEntryIndex
               ? snapshot.val().messages[latestEntryIndex]
               : '',
-            updatedAt: new Date(snapshot.val().createdAt),
+            updatedAt: new Date(snapshot.val().updatedAt),
           }
           if (isGroupObject(group)) {
-            setGroupList((prev) => [...prev, group])
+            setGroupList((prev) => sortByDate([...prev, group]))
           }
         }
       })

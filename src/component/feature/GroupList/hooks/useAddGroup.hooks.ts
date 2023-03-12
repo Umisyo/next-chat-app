@@ -1,4 +1,3 @@
-import { group } from 'console'
 import { FirebaseError } from 'firebase/app'
 import { User } from 'firebase/auth'
 import { getDatabase, ref, get, set, update } from 'firebase/database'
@@ -6,7 +5,7 @@ import { toast } from 'react-toastify'
 
 const db = getDatabase()
 const dbRef = ref(db, 'groups')
-const updatedAt = new Date()
+const updatedAt = new Date().toString()
 
 const isGroupsExit = async (): Promise<boolean> => {
   const checkRef = ref(db)
