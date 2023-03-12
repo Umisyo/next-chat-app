@@ -1,9 +1,10 @@
-import { FormEvent, useEffect, useState } from 'react'
-import Button from '~/component/ui/Button'
+import { FormEvent, useState } from 'react'
 import { useAuthContext } from '~/component/feature/Auth/AuthProvider'
 import GroupLink from '~/component/feature/GroupList/GroupLink'
 import { useAddGroup } from '~/component/feature/GroupList/hooks/useAddGroup.hooks'
 import { useGroupList } from '~/component/feature/GroupList/hooks/useGroupList.hooks'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusSquare } from '@fortawesome/free-regular-svg-icons'
 
 export default function GroupList() {
   const [newGroup, setNewGroup] = useState('')
@@ -32,18 +33,21 @@ export default function GroupList() {
         ))}
       </ul>
       <form className='w-full flex fixed bottom-0 left-0 right-0' onSubmit={handleSubmit}>
-        <input
-          className='w-full h-12'
-          type="text"
-          name='グループを追加'
-          placeholder="グループを追加"
-          maxLength={15}
-          value={newGroup}
-          onChange={(e) => setNewGroup(e.target.value)}
-        />
-        <Button type="submit" someStyles="w-12 h-auto">
-          +
-        </Button>
+        <form
+          className="flex w-full fixed bottom-0 left-0 right-0 bg-slate-100 border"
+          onSubmit={handleSubmit}
+        >
+          <input
+            type="text"
+            className="w-full h-12 px-1 bg-slate-100"
+            placeholder="なにか投稿してみましょう"
+            value={newGroup}
+            onChange={(e) => setNewGroup(e.target.value)}
+          />
+          <button className='w-14'>
+            <FontAwesomeIcon icon={faPlusSquare} />
+          </button>
+        </form>
       </form>
     </div>
   )
