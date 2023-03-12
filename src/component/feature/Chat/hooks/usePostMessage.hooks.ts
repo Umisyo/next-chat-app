@@ -1,6 +1,6 @@
 import { FirebaseError } from 'firebase/app'
 import { User } from 'firebase/auth'
-import { getDatabase, ref, push } from 'firebase/database'
+import { getDatabase, ref, push, update } from 'firebase/database'
 import { NextRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import { MessageObject } from '~/component/feature/Chat/types/MessageObject'
@@ -17,12 +17,14 @@ export const usePostMessage = async (
   try {
     const db = getDatabase()
     const messageRef = ref(db, 'groups/' + groupName + '/messages')
+    const dateRef = ref(db, 'groups/' + groupName)
     const newMessage: MessageObject = {
       message: message,
       sendUserName: user.displayName ? user.displayName : '',
       sendUserAvatar: user.photoURL ? user.photoURL : '',
     }
     await push(messageRef, newMessage)
+    await update(dateRef, { updatedAt: new Date().toString() })
   } catch (e) {
     if (e instanceof FirebaseError) {
       toast.error(e.message)
