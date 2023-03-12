@@ -11,7 +11,7 @@ export default function GroupLink({
       <Link className="block py-2 px-2" href={`/chat/${groupName}`}>
         <p className="font-bold">{groupName}</p>
         <div className="flex mt-2">
-          <span className="font-thin text-xs text-gray-500">
+          <span className="w-64 font-thin text-xs text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
             {latestEntry?.message || 'メッセージはありません'}
           </span>
           <span className="ml-auto font-thin text-xs text-gray-500">
