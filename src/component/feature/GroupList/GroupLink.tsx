@@ -15,7 +15,7 @@ export default function GroupLink({
             {latestEntry?.message || 'メッセージはありません'}
           </span>
           <span className="ml-auto font-thin text-xs text-gray-500">
-            {updatedAt.toString()}
+            {`${updatedAt.getFullYear()}/${updatedAt.getMonth() + 1}/${updatedAt.getDate()}/${updatedAt.getHours()}:${updatedAt.getMinutes()}`}
           </span>
         </div>
       </Link>
