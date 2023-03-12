@@ -18,12 +18,13 @@ export default function Chat() {
     e.preventDefault()
     if (message && user) {
       await postMessage(router, message, user)
+      setMessage('')
     }
   }
 
   useEffect(() => {
     if (router.isReady) {
-      ;(async () => {
+      ; (async () => {
         if (typeof groupName !== 'string' || (await isRedirect(groupName))) {
           router.replace('/404')
           return
