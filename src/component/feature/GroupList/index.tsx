@@ -31,15 +31,17 @@ export default function GroupList() {
           />
         ))}
       </ul>
-      <form onSubmit={handleSubmit}>
+      <form className='w-full flex fixed bottom-0 left-0 right-0' onSubmit={handleSubmit}>
         <input
+          className='w-full h-12'
           type="text"
-          placeholder="グループ名"
+          name='グループを追加'
+          placeholder="グループを追加"
           maxLength={15}
           value={newGroup}
           onChange={(e) => setNewGroup(e.target.value)}
         />
-        <Button type="submit" someStyles="w-6 h-auto">
+        <Button type="submit" someStyles="w-12 h-auto">
           +
         </Button>
       </form>
