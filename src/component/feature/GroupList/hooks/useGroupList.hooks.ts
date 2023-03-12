@@ -11,7 +11,10 @@ const isGroupObject = (value: {
 }
 
 function sortByDate(array: GroupObject[]) {
-  return array.sort((a: GroupObject, b: GroupObject) => b.updatedAt.getTime() - a.updatedAt.getTime())
+  return array.sort(
+    (a: GroupObject, b: GroupObject) =>
+      b.updatedAt.getTime() - a.updatedAt.getTime(),
+  )
 }
 
 export const useGroupList = () => {

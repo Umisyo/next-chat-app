@@ -23,7 +23,7 @@ export default function Chat() {
 
   useEffect(() => {
     if (router.isReady) {
-      ; (async () => {
+      ;(async () => {
         if (typeof groupName !== 'string' || (await isRedirect(groupName))) {
           router.replace('/404')
           return
