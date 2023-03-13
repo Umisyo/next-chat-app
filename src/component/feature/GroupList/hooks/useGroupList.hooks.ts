@@ -3,6 +3,9 @@ import { getDatabase, ref, onChildAdded } from 'firebase/database'
 import { useState, useEffect } from 'react'
 import { GroupObject } from '~/component/feature/GroupList/types/GroupObject'
 
+const db = getDatabase()
+const dbRef = ref(db, 'groups')
+
 const isGroupObject = (value: {
   groupName: any
   updatedAt: any
@@ -22,8 +25,6 @@ export const useGroupList = () => {
 
   useEffect(() => {
     try {
-      const db = getDatabase()
-      const dbRef = ref(db, 'groups')
       return onChildAdded(dbRef, (snapshot) => {
         if (snapshot.exists()) {
           const latestEntryIndex = Object.keys(

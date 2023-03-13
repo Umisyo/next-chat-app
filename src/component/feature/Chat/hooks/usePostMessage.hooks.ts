@@ -5,6 +5,8 @@ import { NextRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import { MessageObject } from '~/component/feature/Chat/types/MessageObject'
 
+const db = getDatabase()
+
 export const usePostMessage = async (
   router: NextRouter,
   message: string,
@@ -15,7 +17,6 @@ export const usePostMessage = async (
     return
   }
   try {
-    const db = getDatabase()
     const messageRef = ref(db, 'groups/' + groupName + '/messages')
     const dateRef = ref(db, 'groups/' + groupName)
     const newMessage: MessageObject = {

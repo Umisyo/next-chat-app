@@ -4,6 +4,8 @@ import { NextRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { MessageObject } from '~/component/feature/Chat/types/MessageObject'
 
+const db = getDatabase()
+
 export const useGetChats = (router: NextRouter) => {
   const [chatList, setChatList] = useState<MessageObject[]>([])
   const groupName = router.query.groupName
@@ -13,7 +15,6 @@ export const useGetChats = (router: NextRouter) => {
         if (!groupName) {
           setChatList([])
         }
-        const db = getDatabase()
         const messagesRef = ref(db, 'groups/' + groupName + '/messages')
         return onChildAdded(messagesRef, (snapshot) => {
           const value = snapshot.val()
