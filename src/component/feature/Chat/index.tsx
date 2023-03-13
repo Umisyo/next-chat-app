@@ -36,16 +36,12 @@ export default function Chat() {
 
   return (
     <div className="h-screen flex flex-col">
-      {chats.length > 0 ? (
-        <div className="pb-12 mt-auto">
-          {chats.map((chat, index) => {
-            return <MessageItem key={index} message={chat} />
-          })}
-          <div ref={scrollBottomRef} />
-        </div>
-      ) : (
-        <p className="m-auto">メッセージはありません</p>
-      )}
+      <div className="pb-12 mt-auto">
+        {chats.map((chat, index) => {
+          return <MessageItem key={index} message={chat} />
+        })}
+        <div ref={scrollBottomRef} />
+      </div>
       <form
         className="flex w-full fixed bottom-0 left-0 right-0 bg-slate-100 border"
         onSubmit={handleSubmit}
