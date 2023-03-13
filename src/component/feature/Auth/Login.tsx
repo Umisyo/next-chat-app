@@ -48,7 +48,7 @@ export default function Login() {
             />
           </label>
           <label>
-            <p className='mt-2'>パスワード</p>
+            <p className="mt-2">パスワード</p>
             <input
               className="w-96 h-8 block"
               type="password"

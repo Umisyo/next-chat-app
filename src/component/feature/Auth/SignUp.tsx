@@ -38,7 +38,10 @@ export default function SignUp() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (Object.values(formState).some((value) => value === '') || image === undefined) {
+    if (
+      Object.values(formState).some((value) => value === '') ||
+      image === undefined
+    ) {
       toast.error('入力されてない項目があります')
       return
     }
@@ -111,7 +114,7 @@ export default function SignUp() {
             />
           </label>
           <label>
-            <p className='mt-2'>メールアドレス</p>
+            <p className="mt-2">メールアドレス</p>
             <input
               className="w-full h-8 block border"
               type="email"
@@ -123,7 +126,7 @@ export default function SignUp() {
             />
           </label>
           <label>
-            <p className='mt-2'>パスワード</p>
+            <p className="mt-2">パスワード</p>
             <input
               className="w-full h-8 block border"
               type="password"

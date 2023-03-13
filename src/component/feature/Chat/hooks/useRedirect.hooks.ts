@@ -15,7 +15,7 @@ export default function useRedirect(router: NextRouter) {
   const groupName = router.query.groupName
   useEffect(() => {
     if (router.isReady) {
-      ; (async () => {
+      ;(async () => {
         if (typeof groupName !== 'string' || (await isRedirect(groupName))) {
           router.replace('/404')
           return

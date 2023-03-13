@@ -48,7 +48,7 @@ export default function GroupList() {
             value={newGroup}
             onChange={(e) => setNewGroup(e.target.value)}
           />
-          <button type="submit" className="w-14">
+          <button name="send" type="submit" className="w-14">
             <FontAwesomeIcon icon={faPlusSquare} />
           </button>
         </form>
