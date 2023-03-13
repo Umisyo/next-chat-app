@@ -1,13 +1,14 @@
 import { FirebaseError } from 'firebase/app'
 import { getDatabase, onChildAdded, ref } from 'firebase/database'
-import { NextRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { MessageObject } from '~/component/feature/Chat/types/MessageObject'
 
 const db = getDatabase()
 
-export const useGetChats = (router: NextRouter) => {
+export const useGetChats = () => {
   const [chatList, setChatList] = useState<MessageObject[]>([])
+  const router = useRouter()
   const groupName = router.query.groupName
   useEffect(() => {
     if (router.isReady) {

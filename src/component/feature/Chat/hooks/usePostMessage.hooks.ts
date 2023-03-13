@@ -8,10 +8,14 @@ import { MessageObject } from '~/component/feature/Chat/types/MessageObject'
 const db = getDatabase()
 
 export const usePostMessage = async (
-  router: NextRouter,
   message: string,
-  user: User,
+  router: NextRouter,
+  user: User
 ) => {
+  if (!user) {
+    toast.error('Please login')
+    return
+  }
   const groupName = router.query.groupName
   if (!groupName) {
     return

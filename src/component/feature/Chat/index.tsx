@@ -15,15 +15,16 @@ export default function Chat() {
   const [message, setMessage] = useState<string>('')
   const scrollBottomRef = useRef<HTMLDivElement>(null)
 
+  useRedirect(router)
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (message && user) {
-      await postMessage(router, message, user)
+      await postMessage(message, router, user)
       setMessage('')
     }
   }
 
-  useRedirect(router)
 
   useEffect(() => {
     scrollBottomRef?.current?.scrollIntoView()
@@ -32,7 +33,7 @@ export default function Chat() {
   return (
     <div className="h-screen flex flex-col">
       <div className="pb-12 mt-auto">
-        {useGetChats(router).map((chat, index) => {
+        {useGetChats().map((chat, index) => {
           return <MessageItem key={index} message={chat} />
         })}
         <div ref={scrollBottomRef} />
