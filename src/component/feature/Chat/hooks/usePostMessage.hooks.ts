@@ -10,7 +10,7 @@ const db = getDatabase()
 export const usePostMessage = async (
   message: string,
   router: NextRouter,
-  user: User
+  user: User,
 ) => {
   if (!user) {
     toast.error('Please login')

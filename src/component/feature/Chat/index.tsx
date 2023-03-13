@@ -26,7 +26,6 @@ export default function Chat() {
     }
   }
 
-
   useEffect(() => {
     scrollBottomRef?.current?.scrollIntoView()
   }, [])
