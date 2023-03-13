@@ -38,8 +38,9 @@ export default function SignUp() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (Object.values(formState).some((value) => value === '') || !image) {
+    if (Object.values(formState).some((value) => value === '') || image === undefined) {
       toast.error('入力されてない項目があります')
+      return
     }
     await uploadImg(image).then((res) => {
       if (res) {
@@ -77,7 +78,6 @@ export default function SignUp() {
               type="file"
               accept="image/*"
               name="profileImage"
-              required
               onChange={uploadToClient}
             />
             <svg
