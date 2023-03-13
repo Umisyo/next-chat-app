@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons'
 
 export default function GroupList() {
-  const [newGroup, setNewGroup] = useState('')
+  const [group, setGroup] = useState('')
   const user = useAuthContext()?.user
 
   const addGroup = useAddGroup
@@ -15,9 +15,9 @@ export default function GroupList() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await addGroup(newGroup, user).then(() => {
-      setNewGroup('')
-    })
+    const newGroup = group
+    setGroup('')
+    await addGroup(newGroup, user)
   }
 
   return (
@@ -33,25 +33,20 @@ export default function GroupList() {
         ))}
       </ul>
       <form
-        className="w-full flex fixed bottom-0 left-0 right-0"
+        className="flex w-full fixed bottom-0 left-0 right-0 bg-slate-100 border"
         onSubmit={handleSubmit}
       >
-        <form
-          className="flex w-full fixed bottom-0 left-0 right-0 bg-slate-100 border"
-          onSubmit={handleSubmit}
-        >
-          <input
-            type="text"
-            className="w-full h-12 px-1 bg-slate-100"
-            name="新しいグループ"
-            placeholder="グループを作成"
-            value={newGroup}
-            onChange={(e) => setNewGroup(e.target.value)}
-          />
-          <button name="send" type="submit" className="w-14">
-            <FontAwesomeIcon icon={faPlusSquare} />
-          </button>
-        </form>
+        <input
+          type="text"
+          className="w-full h-12 px-1 bg-slate-100"
+          name="新しいグループ"
+          placeholder="グループを作成"
+          value={group}
+          onChange={(e) => setGroup(e.target.value)}
+        />
+        <button name="send" type="submit" className="w-14">
+          <FontAwesomeIcon icon={faPlusSquare} />
+        </button>
       </form>
     </div>
   )
