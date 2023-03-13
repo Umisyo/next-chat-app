@@ -70,6 +70,8 @@ export default function SignUp() {
               className="flex justify-center m-auto items-center w-[512px] h-auto"
               src={createObjectURL}
               alt={'プロフィール画像'}
+              width={512}
+              height={512}
             />
           )}
           <label className="bg-primary-900 text-white-900 flex justify-center items-center px-4 py-2 rounded mb-6 w-full">
@@ -96,33 +98,42 @@ export default function SignUp() {
               />
             </svg>
           </label>
-          <input
-            className="w-full h-8 block border"
-            type="text"
-            name="userName"
-            value={formState.userName}
-            onChange={handleChange}
-            required
-            placeholder="ユーザー名"
-          />
-          <input
-            className="w-full h-8 block border mt-2"
-            type="email"
-            name="email"
-            value={formState.email}
-            onChange={handleChange}
-            required
-            placeholder="メールアドレス"
-          />
-          <input
-            className="w-full h-8 block border mt-2"
-            type="password"
-            name="password"
-            value={formState.password}
-            onChange={handleChange}
-            required
-            placeholder="パスワード"
-          />
+          <label>
+            <p>ユーザー名</p>
+            <input
+              className="w-full h-8 block border"
+              type="text"
+              name="userName"
+              value={formState.userName}
+              onChange={handleChange}
+              required
+              placeholder="ユーザー名"
+            />
+          </label>
+          <label>
+            <p className='mt-2'>メールアドレス</p>
+            <input
+              className="w-full h-8 block border"
+              type="email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+              required
+              placeholder="メールアドレス"
+            />
+          </label>
+          <label>
+            <p className='mt-2'>パスワード</p>
+            <input
+              className="w-full h-8 block border"
+              type="password"
+              name="password"
+              value={formState.password}
+              onChange={handleChange}
+              required
+              placeholder="パスワード"
+            />
+          </label>
           <Button isBlock type="submit" someStyles="px-4 py-2 mt-10">
             ログイン
           </Button>

@@ -35,24 +35,30 @@ export default function Login() {
       <div>
         <h2 className="text-2xl font-bold">ログイン</h2>
         <form className="mt-6" onSubmit={handleSubmit}>
-          <input
-            className="w-96 h-8 block"
-            type="email"
-            name="email"
-            value={formState.email}
-            onChange={handleChange}
-            required
-            placeholder="メールアドレス"
-          />
-          <input
-            className="w-96 h-8 block mt-2"
-            type="password"
-            name="password"
-            value={formState.password}
-            onChange={handleChange}
-            required
-            placeholder="パスワード"
-          />
+          <label>
+            <p>メールアドレス</p>
+            <input
+              className="w-96 h-8 block"
+              type="email"
+              name="email"
+              value={formState.email}
+              onChange={handleChange}
+              required
+              placeholder="メールアドレス"
+            />
+          </label>
+          <label>
+            <p className='mt-2'>パスワード</p>
+            <input
+              className="w-96 h-8 block"
+              type="password"
+              name="password"
+              value={formState.password}
+              onChange={handleChange}
+              required
+              placeholder="パスワード"
+            />
+          </label>
           <Button isBlock type="submit" someStyles="px-4 py-2 mt-10">
             ログイン
           </Button>
