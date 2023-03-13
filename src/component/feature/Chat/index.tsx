@@ -11,9 +11,11 @@ import MessageItem from '~/component/feature/Chat/MessageItem'
 export default function Chat() {
   const router = useRouter()
   const postMessage = usePostMessage
+  const chats = useGetChats()
   const user = useAuthContext().user
   const [message, setMessage] = useState<string>('')
   const scrollBottomRef = useRef<HTMLDivElement>(null)
+  const isScrollToBottom = chats.length > 0
 
   useRedirect(router)
 
@@ -27,17 +29,23 @@ export default function Chat() {
   }
 
   useEffect(() => {
-    scrollBottomRef?.current?.scrollIntoView()
-  }, [])
+    if (chats.length > 0) {
+      scrollBottomRef?.current?.scrollIntoView()
+    }
+  }, [chats.length])
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="pb-12 mt-auto">
-        {useGetChats().map((chat, index) => {
-          return <MessageItem key={index} message={chat} />
-        })}
-        <div ref={scrollBottomRef} />
-      </div>
+      {chats.length > 0 ? (
+        <div className="pb-12 mt-auto">
+          {chats.map((chat, index) => {
+            return <MessageItem key={index} message={chat} />
+          })}
+          <div ref={scrollBottomRef} />
+        </div>
+      ) : (
+        <p className="m-auto">メッセージはありません</p>
+      )}
       <form
         className="flex w-full fixed bottom-0 left-0 right-0 bg-slate-100 border"
         onSubmit={handleSubmit}
