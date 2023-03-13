@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Button from '~/component/ui/Button'
 import { useAuthContext } from '~/component/feature/Auth/AuthProvider'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 export default function SignUp() {
   const [formState, setFormState] = useState<FormState>({
@@ -37,6 +38,9 @@ export default function SignUp() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (Object.values(formState).some((value) => value === '') || !image) {
+      toast.error('入力されてない項目があります')
+    }
     await uploadImg(image).then((res) => {
       if (res) {
         signup(formState, res)
