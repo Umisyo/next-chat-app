@@ -1,38 +1,104 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# next-chat-app
 
-## Getting Started
+このプロジェクトは Vercel にデプロイされています。
 
-First, run the development server:
+<https://next-chat-app-bice.vercel.app>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+## 質問事項
+
+### 自分の強みが発揮されているコードはどこですか？またそれはなぜですか？
+
+- ロジック面において、出来る限り責務を小さくわけカスタムフックに実装するようにしています。
+  - 機能追加やバグの修正が発生した際に影響範囲が可能な限り小さくなるような実装/設計が強みです。
+  - 今回は限られた時間だったためテストを書いていませんが、テストを書く場合、比較的簡単にテストを追加できると思います。
+- 全体を通して、ユーザーの体験やアクセシビリティを意識した実装をしています。
+  - 例えば,マークアップにおいては可能な限りセマンティックな実装にすることで、スクリーンリーダーでも問題なく認識できるよう意識しています。また、フォーカスした要素は見た目を変えるなどしています。
+  - Lighthouse でアクセシビリティスコア 100 点を出しています。
+
+### どのような拡張性を想定し、何をもって備えていますか？
+
+- 長期的に保守運用するものと仮定して、機能が増えていっても配置の一貫性さえ保っていれば、例えばある機能を修正したいときに簡単に目的のファイルを探すことが出来るようなディレクトリ設計をしています。
+  - ディレクトリの簡単な説明は下部にあります
+- 機能の仕様が変更されたり、ある機能を追加するときに影響範囲を絞るために、Component や hooks をできるだけ小さな責務に分けています。
+
+## 開発環境
+
+### 主な使用技術
+
+- React
+- Next.js
+- firebase(Auth, Realtime Database, Storage)
+- TypeScript
+- renovate
+
+### 開発
+
+このプロジェクトはパッケージマネージャーとして`pnpm`を採用しています。
+
+#### 開発サーバー
+
+```sh
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### ビルド
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```sh
+pnpm build
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+#### フォーマット
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```sh
+pnpm lint:fix #eslint
+pnpm format #prettier
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### デプロイ
 
-## Learn More
+本リポジトリと Vercel を紐付けているため、`main`ブランチにマージされたコードは即座にデプロイされます。
 
-To learn more about Next.js, take a look at the following resources:
+### ディレクトリルール
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+src 以下のディレクトリ構造は以下のようになっています
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```text
+src
+├── component
+│  ├── feature
+│  │   └── [機能単位]
+│  │       ├── hooks
+│  │       ├── types
+│  │       └── [someComponent].tsx
+│  └── ui
+├── constant
+│  └── env.ts
+├── hooks
+├── lib
+│  └── firebase.ts
+├── pages
+└── styles
+```
 
-## Deploy on Vercel
+以下本リポジトリで特に特徴的なルールを示します
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Component
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- feature
+
+  - 直下には機能単位で分類したディレクトリを作成します
+    etc: Auth
+  - 各機能単位のディレクトリ配下にはその機能に関連した Component, Component が依存する hook, 必要な型情報を配置します
+
+- ui
+
+  - 直下には、ページをまたぐ汎用的な Component を配置します。原則として、その他の Component との依存性を排除した形にして下さい。ただし、ログアウト機能を持つ Header などは例外とします。
+    etc: Button
+
+#### hooks
+
+直下には、ページをまたぐ汎用的な hooks を配置します。
+
+#### pages
+
+ルーティングされるページの実態を配置します。原則として、pages 以下のページコンポーネントにはロジックや UI を保持させないようにします。ただし、header や AuthGuard,Context 等ページを横断するようなもの等は配置できます。
