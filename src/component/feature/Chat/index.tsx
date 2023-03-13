@@ -20,8 +20,9 @@ export default function Chat() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (message && user) {
-      await postMessage(message, router, user)
+      const newMessage = message
       setMessage('')
+      await postMessage(newMessage, router, user)
     }
   }
 
