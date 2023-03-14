@@ -44,7 +44,7 @@ export default function GroupList() {
           value={group}
           onChange={(e) => setGroup(e.target.value)}
         />
-        <button name="send" type="submit" className="w-14">
+        <button aria-label='グループを作成する' name="send" type="submit" className="w-14">
           <FontAwesomeIcon icon={faPlusSquare} />
         </button>
       </form>

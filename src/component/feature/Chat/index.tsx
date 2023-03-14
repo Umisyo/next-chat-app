@@ -53,7 +53,7 @@ export default function Chat() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button name="send" type="submit" className="w-14">
+        <button aria-label='メッセージを送る' name="send" type="submit" className="w-14">
           <FontAwesomeIcon icon={faPaperPlane} />
         </button>
       </form>
