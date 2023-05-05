@@ -14,8 +14,8 @@ dependencies:
     specifier: ^0.2.0
     version: 0.2.0(@fortawesome/fontawesome-svg-core@6.3.0)(react@18.2.0)
   '@types/node':
-    specifier: 18.16.4
-    version: 18.16.4
+    specifier: 18.16.5
+    version: 18.16.5
   '@types/react':
     specifier: 18.2.5
     version: 18.2.5
@@ -610,7 +610,7 @@ packages:
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.5
-      '@types/node': 18.16.4
+      '@types/node': 18.16.5
     dev: false
 
   /@grpc/proto-loader@0.6.13:
@@ -836,8 +836,8 @@ packages:
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==}
     dev: false
 
-  /@types/node@18.16.4:
-    resolution: {integrity: sha512-LUhvPmAKAbgm+p/K11IWszLZVoZDlMF4NRmqbhEzDz/CnCuehPkZXwZbBCKGJsgjnuVejotBwM7B3Scrq4EqDw==}
+  /@types/node@18.16.5:
+    resolution: {integrity: sha512-seOA34WMo9KB+UA78qaJoCO20RJzZGVXQ5Sh6FWu0g/hfT44nKXnej3/tCQl7FL97idFpBhisLYCTB50S0EirA==}
     dev: false
 
   /@types/prop-types@15.7.5:
@@ -2860,7 +2860,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 18.16.4
+      '@types/node': 18.16.5
       long: 4.0.0
     dev: false
 
@@ -2879,7 +2879,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.16.4
+      '@types/node': 18.16.5
       long: 5.2.1
     dev: false
 
